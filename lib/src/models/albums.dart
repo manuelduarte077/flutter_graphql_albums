@@ -1,7 +1,7 @@
 class Album {
-  static String getAlbums = """ 
-    query getAlbums {
-      albums(options: { paginate: { page: 1, limit: 10 } }) {
+  static String getAlbums = r""" 
+    query getAlbums($page: Int, $limit: Int) {
+      albums(options: { paginate: { page: $page, limit: $limit } }) {
         data {
           id
           title
@@ -13,5 +13,6 @@ class Album {
         }
       }
     }
+
    """;
 }

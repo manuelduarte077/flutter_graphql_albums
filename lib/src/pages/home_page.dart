@@ -12,9 +12,10 @@ class HomePage extends StatelessWidget {
         title: const Text('Albums'),
       ),
       body: Query(
-        options: QueryOptions(
-          document: gql(Album.getAlbums),
-        ),
+        options: QueryOptions(document: gql(Album.getAlbums), variables: {
+          'page': 1,
+          'limit': 10,
+        }),
         builder: (QueryResult result, {fetchMore, refetch}) {
           if (result.hasException) {
             return Text(result.exception.toString());
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
 
           List albums = result.data?['albums']['data'];
 
-          // print(albums);
+          // print(albumUsers);
 
           return ListView.builder(
             itemCount: albums.length,
