@@ -9,10 +9,12 @@ class Album {
             name
             username
             email
+            company {
+              name
+            }
           }
         }
       }
     }
-
    """;
 }
