@@ -5,22 +5,6 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  final String getAlbums = """ 
-    query getAlbums {
-      albums(options: { paginate: { page: 1, limit: 5 } }) {
-        data {
-          id
-          title
-          user {
-            name
-            username
-            email
-          }
-        }
-      }
-    }
-   """;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +16,28 @@ class HomePage extends StatelessWidget {
           document: gql(Album.getAlbums),
         ),
         builder: (QueryResult result, {fetchMore, refetch}) {
-          return Container();
+          if (result.hasException) {
+            return Text(result.exception.toString());
+          }
+
+          if (result.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          List albums = result.data?['albums']['data'];
+
+          // print(albums);
+
+          return ListView.builder(
+            itemCount: albums.length,
+            itemBuilder: (context, index) {
+              final album = albums[index]["title"];
+
+              return ListTile(
+                title: Text(album),
+              );
+            },
+          );
         },
       ),
     );
