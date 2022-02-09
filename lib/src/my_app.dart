@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_albums/src/pages/home_page.dart';
+import 'package:flutter_graphql_albums/src/ui/screens/album_details.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+
+import 'ui/screens/home_page.dart';
 
 final HttpLink httpLink = HttpLink(
   'https://graphqlzero.almansi.me/api',
@@ -20,10 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GraphQLProvider(
       client: client,
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        initialRoute: 'home',
+        routes: {
+          'album': (BuildContext context) => const AlbumDetails(),
+        },
         title: 'GraphQL Albums',
-        home: HomePage(),
+        home: const HomePage(),
       ),
     );
   }
