@@ -6,8 +6,9 @@ import 'package:flutter_graphql_albums/src/ui/screens/album_details.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -79,15 +80,16 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const AlbumDetails(),
-                                ),
-                              );
-                            },
-                            child: const Text('Ver Más')),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AlbumDetails(),
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.arrow_forward),
+                        ),
                         TextButton(
                           onPressed: () {},
                           child: const Icon(Icons.favorite, color: Colors.red),
