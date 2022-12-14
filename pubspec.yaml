@@ -6,21 +6,23 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.16.0 <3.0.0'
+  sdk: ">=2.18.4 <3.0.0"
+  flutter: 3.3.8
 
 dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  graphql_flutter: ^5.1.1-beta.5
-  graphql: ^5.1.2-beta.6
-  graphql_codegen: ^0.11.2
+  graphql: ^5.1.2-beta.4
+  graphql_codegen: ^0.11.1
+  graphql_flutter: ^5.1.1-beta.4
 
 
 dev_dependencies:
-  flutter_lints: ^1.0.0
+  build_runner: ^2.2.1 # Used with graphql_codegen for generating Dart type files
   flutter_test:
     sdk: flutter
+  very_good_analysis: ^3.1.0
 
 flutter:
   uses-material-design: true

@@ -6,9 +6,8 @@ import 'package:flutter_graphql_albums/src/ui/screens/album_details.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({
-    Key? key,
-  }) : super(key: key);
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -44,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          List albums = result.data?['albums']['data'];
+          final albums = result.data!['albums'] as List<dynamic>;
 
           // print(albumUsers);
 
@@ -72,8 +71,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                      title: Text(album),
-                      subtitle: Text(userName + " - " + company),
+                      title: Text('$album'),
+                      subtitle: Text('$userName - $company'),
                       leading: const Icon(Icons.music_note),
                     ),
                     Row(
@@ -83,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              MaterialPageRoute<Route>(
                                 builder: (context) => const AlbumDetails(),
                               ),
                             );
