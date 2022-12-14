@@ -3,31 +3,38 @@ import 'package:flutter_graphql_albums/src/ui/screens/album_details.dart';
 import 'package:flutter_graphql_albums/src/ui/screens/home_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-final HttpLink httpLink = HttpLink(
-  'https://graphqlzero.almansi.me/api',
-);
-
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
+/// Graphql connect
+ValueNotifier<GraphQLClient> getClient() {
+  final httpLink = HttpLink('https://graphqlzero.almansi.me/api');
+  final link = Link.from([httpLink]);
+  return ValueNotifier(
     GraphQLClient(
-      cache: GraphQLCache(),
-      link: httpLink,
+      cache: GraphQLCache(store: HiveStore()),
+      link: link,
+      defaultPolicies: DefaultPolicies(
+        watchQuery: Policies(
+          fetch: FetchPolicy.cacheAndNetwork,
+        ),
+      ),
     ),
   );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: client,
+      client: getClient(),
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
         initialRoute: 'home',
         routes: {
           'album': (BuildContext context) => const AlbumDetails(),
         },
-        title: 'GraphQL Albums',
         home: const HomePage(),
       ),
     );

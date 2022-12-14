@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPersistentFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPersistentFrameCallback((timeStamp) {
       _con.init(context);
     });
   }
@@ -30,10 +30,13 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Albums'),
       ),
       body: Query(
-        options: QueryOptions(document: gql(Album.getAlbums), variables: {
-          'page': 1,
-          'limit': 10,
-        }),
+        options: QueryOptions(
+          document: gql(Album.getAlbums),
+          variables: const {
+            'page': 1,
+            'limit': 10,
+          },
+        ),
         builder: (QueryResult result, {fetchMore, refetch}) {
           if (result.hasException) {
             return Text(result.exception.toString());
@@ -43,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final albums = result.data!['albums'] as List<dynamic>;
+          final albums = result.data!['albums']['data'] as List<dynamic>;
 
           // print(albumUsers);
 
@@ -55,23 +58,26 @@ class _HomePageState extends State<HomePage> {
               final company = albums[index]["user"]["company"]["name"];
 
               return Card(
-                margin: const EdgeInsets.all(5),
-                elevation: 5,
-                color: Colors.white,
-                shape: ShapeBorder.lerp(
-                  const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  0.5,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                elevation: 0,
+                color: Colors.red[50],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                      title: Text('$album'),
+                      title: Text(
+                        '$album',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       subtitle: Text('$userName - $company'),
                       leading: const Icon(Icons.music_note),
                     ),
