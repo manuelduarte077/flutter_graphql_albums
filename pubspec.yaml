@@ -12,7 +12,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  graphql_flutter: ^5.0.0
+  graphql_flutter: ^5.1.1-beta.5
+  graphql: ^5.1.2-beta.6
+  graphql_codegen: ^0.11.2
+
 
 dev_dependencies:
   flutter_lints: ^1.0.0
