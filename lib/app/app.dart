@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_albums/src/ui/screens/album_details.dart';
+import 'package:flutter_graphql_albums/src/ui/screens/home_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
-import 'ui/screens/home_page.dart';
 
 final HttpLink httpLink = HttpLink(
   'https://graphqlzero.almansi.me/api',
