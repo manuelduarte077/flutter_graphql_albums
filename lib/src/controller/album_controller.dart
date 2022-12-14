@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AlbumController {
   late BuildContext context;
 
-  Future init(BuildContext context) async {
+  Future<void> init(BuildContext context) async {
     this.context = context;
   }
 
