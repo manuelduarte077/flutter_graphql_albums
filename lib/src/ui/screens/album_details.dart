@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_albums/src/models/albums.dart';
 
 class AlbumDetails extends StatelessWidget {
-
   /// Contructor, se requiere un objeto de tipo HomePage
   const AlbumDetails({
     super.key,
-    this.albumsD,
   });
-
-  final Album? albumsD;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +21,7 @@ class AlbumDetails extends StatelessWidget {
             ),
             Padding(
               padding:
-              const EdgeInsetsDirectional.only(top: 20, start: 20, end: 20),
+                  const EdgeInsetsDirectional.only(top: 20, start: 20, end: 20),
               child: Builder(builder: (context) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.end,
