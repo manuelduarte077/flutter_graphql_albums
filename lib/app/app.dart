@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_graphql_albums/features/albums/album_details.dart';
-import 'package:flutter_graphql_albums/features/home_screen.dart';
+import 'package:flutter_graphql_albums/routes/app_router.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 /// Graphql connect
@@ -26,22 +25,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// This app is designed only to work vertically, so we limit
-    /// orientations to portrait up and down.
     SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+    );
 
     return GraphQLProvider(
       client: getClient(),
-      child: CupertinoApp(
-        theme: const CupertinoThemeData(brightness: Brightness.light),
+      child: const CupertinoApp(
+        theme: CupertinoThemeData(brightness: Brightness.light),
+        onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: 'home',
-        routes: {
-          'album': (BuildContext context) => const AlbumDetails(
-                albumId: '',
-              ),
-        },
-        home: const HomeScreen(),
       ),
     );
   }

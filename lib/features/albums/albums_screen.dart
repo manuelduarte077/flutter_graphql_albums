@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_graphql_albums/features/albums/album_details.dart';
-import 'package:flutter_graphql_albums/features/albums/~graphql/__generated__/albums.query.graphql.dart';
 import 'package:flutter_graphql_albums/features/albums/albums_row_item.dart';
+import 'package:flutter_graphql_albums/features/albums/~graphql/__generated__/albums.query.graphql.dart';
 import 'package:flutter_graphql_albums/utils.dart';
 
 class AlbumsScreen extends StatefulWidget {
@@ -44,13 +43,9 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
                         title: item!.id!,
                         description: item.title!,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                             CupertinoPageRoute(
-                              builder: (context) => AlbumDetails(
-                                albumId: item.id!,
-                              ),
-                            ),
+                          Navigator.of(context).pushNamed(
+                            'album',
+                            arguments: item,
                           );
                         },
                       );
