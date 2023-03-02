@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_graphql_albums/features/albums/~graphql/__generated__/albums.query.graphql.dart';
 import 'package:flutter_graphql_albums/styles/styles.dart';
 
 class AlbumsRowItem extends StatelessWidget {
   const AlbumsRowItem({
     super.key,
+    required this.title,
+    required this.description,
+    this.onPressed,
   });
+
+  final String title;
+  final String description;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +41,14 @@ class AlbumsRowItem extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    'product.name',
+                    title,
                     style: Styles.productRowItemName,
                   ),
-                  Padding(padding: EdgeInsets.only(top: 8)),
+                  const Padding(padding: EdgeInsets.only(top: 8)),
                   Text(
-                    'description',
+                    description,
                     style: Styles.productRowTotal,
                   )
                 ],
@@ -49,7 +57,7 @@ class AlbumsRowItem extends StatelessWidget {
           ),
           CupertinoButton(
             padding: EdgeInsets.zero,
-            onPressed: () {},
+            onPressed: onPressed,
             child: const Icon(
               CupertinoIcons.plus_circled,
               semanticLabel: 'Add',

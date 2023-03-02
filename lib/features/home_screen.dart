@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_graphql_albums/features/albums/albums_screen.dart';
 import 'package:flutter_graphql_albums/src/controller/album_controller.dart';
-import 'package:flutter_graphql_albums/src/ui/screens/albums/albums_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

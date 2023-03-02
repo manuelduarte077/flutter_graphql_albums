@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_graphql_albums/src/ui/screens/album_details.dart';
-import 'package:flutter_graphql_albums/src/ui/screens/home/home_screen.dart';
+import 'package:flutter_graphql_albums/features/albums/album_details.dart';
+import 'package:flutter_graphql_albums/features/home_screen.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 /// Graphql connect
@@ -37,7 +37,9 @@ class MyApp extends StatelessWidget {
         theme: const CupertinoThemeData(brightness: Brightness.light),
         initialRoute: 'home',
         routes: {
-          'album': (BuildContext context) => const AlbumDetails(),
+          'album': (BuildContext context) => const AlbumDetails(
+                albumId: '',
+              ),
         },
         home: const HomeScreen(),
       ),
