@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AlbumDetails extends StatelessWidget {
-  /// Contructor, se requiere un objeto de tipo HomePage
   const AlbumDetails({
     super.key,
+    required this.albumId,
   });
+
+  final String albumId;
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +14,13 @@ class AlbumDetails extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsetsDirectional.only(top: 50, start: 20, end: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(
-              child: Text(
-                'Album Details',
-                style: TextStyle(fontSize: 24),
-              ),
+            IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
             Padding(
               padding:
@@ -25,10 +28,10 @@ class AlbumDetails extends StatelessWidget {
               child: Builder(builder: (context) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children:  [
                     Text(
-                      'Album Name: ',
-                      style: TextStyle(fontSize: 18),
+                      albumId,
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ],
                 );
