@@ -1,16 +1,16 @@
-# flutter_graphql_albums
+# Flutter Graphql Albums
 
-A new Flutter project.
 
-## Getting Started
+## Packages
+- flutter_hooks
+- graphql
+- graphql_codegen
+- graphql_flutter
+- build_runner
+- very_good_analysis
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Demo
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="250" src="https://user-images.githubusercontent.com/46093689/222337493-c653ca84-8ca7-4c63-b397-6babc37a44a0.png" />
