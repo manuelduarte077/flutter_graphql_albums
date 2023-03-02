@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_albums/features/albums/~graphql/__generated__/albums.query.graphql.dart';
 
 class AlbumDetails extends StatelessWidget {
   const AlbumDetails({
     super.key,
-    required this.albumId,
+    this.albumId,
   });
 
-  final String albumId;
+  final Query$getAlbums$albums$data? albumId;
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +23,34 @@ class AlbumDetails extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            Padding(
-              padding:
-                  const EdgeInsetsDirectional.only(top: 20, start: 20, end: 20),
-              child: Builder(builder: (context) {
+            Builder(
+              builder: (context) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children:  [
-                    Text(
-                      albumId,
-                      style: const TextStyle(fontSize: 18),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text(
+                        albumId!.user!.name!,
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                      subtitle: Text(
+                        albumId!.user!.username!,
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    ListTile(
+                      title: const Text(
+                        'Company',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      subtitle: Text(
+                        albumId!.user!.company!.name!,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ),
                   ],
                 );
-              }),
+              },
             ),
           ],
         ),
